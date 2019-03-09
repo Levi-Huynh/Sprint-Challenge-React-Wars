@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
+import Card from './components/CharCard';
+
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      starwarsChars: []
+      starwarsChars: [],
     };
   }
 
-  componentDidMount() {
-    this.getCharacters('https://swapi.co/api/people/');
-  }
+ 
+  
+
+componentDidMount(){
+  // var myRequest = new Request ('https://swapi.co/api/people/');
+  this.getCharacters('https://swapi.co/api/people/');
+  let starwarsChars= [];
+
+}
 
   getCharacters = URL => {
     // feel free to research what this code is doing.
@@ -22,20 +30,29 @@ class App extends Component {
         return res.json();
       })
       .then(data => {
-        this.setState({ starwarsChars: data.results });
+        console.log(data);
+        this.setState({ starwarsChars: data.results })
       })
       .catch(err => {
         throw new Error(err);
-      });
-  };
+      })
+  }
+
+
+
 
   render() {
     return (
       <div className="App">
-        <h1 className="Header">React Wars</h1>
-      </div>
-    );
+        <h1 className="Header">React Wars!</h1>
+        <div className="myList">
+        {this.state.starwarsChars.map(charMap => {
+        return <Card key={`char-${charMap.created}`} char={charMap}/>})}
+    </div>
+    </div>
+    )
   }
 }
 
 export default App;
+
