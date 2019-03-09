@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-
+import Image1 from './CharImage';
 
 function Card(props) {
 
     return (
         <div className="char-card">
           <div className="char-info">
+        
             <h3>{props.char.name}</h3>
             <p>
               <strong>Height:</strong> {props.char.height}
